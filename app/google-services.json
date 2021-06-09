@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "892355083740",
+    "project_id": "techblazer-ce54a",
+    "storage_bucket": "techblazer-ce54a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892355083740:android:75c6c4920da4a66e83a319",
+        "android_client_info": {
+          "package_name": "com.example.projectblazer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892355083740-p8geceto6gn2iohr4f2qj9sk0pk122na.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgfhtezUWhSEh-7bg0jlQJuavLdt06R8g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "892355083740-p8geceto6gn2iohr4f2qj9sk0pk122na.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
