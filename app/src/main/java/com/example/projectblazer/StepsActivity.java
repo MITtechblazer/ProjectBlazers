@@ -2,19 +2,13 @@ package com.example.projectblazer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class StepsActivity extends AppCompatActivity {
 
@@ -22,18 +16,10 @@ public class StepsActivity extends AppCompatActivity {
     private double MagnitudePrevious = 0;
     private Integer stepCount = 0;
 
-    //Dialog
-    Button btnWin,btnLose;
-    Dialog dialog;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_steps);
-
-        btnWin = findViewById(R.id.btnWin);
-        btnLose = findViewById(R.id.btnLose);
-        dialog = new Dialog(this);
+        setContentView(R.layout.activity_main);
 
         textView = findViewById(R.id.tv_stepsTaken);
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -53,7 +39,6 @@ public class StepsActivity extends AppCompatActivity {
                         stepCount++;
                     }
                     textView.setText(stepCount.toString());
-
                 }
             }
 
@@ -63,24 +48,6 @@ public class StepsActivity extends AppCompatActivity {
         };
 
         sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-    }
-
-    private void openWinDialog() {
-        dialog.setContentView(R.layout.win_layout_dialog);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        ImageView imageViewClose = dialog.findViewById(R.id.imageViewClose);
-        Button btnOk = dialog.findViewById(R.id.btnOK);
-
-        imageViewClose.setOnClickListener(v -> {
-            dialog.dismiss();
-            Toast.makeText(StepsActivity.this, "Request Ignore", Toast.LENGTH_SHORT).show();
-        });
-        btnOk.setOnClickListener(v -> {
-            dialog.dismiss();
-            Toast.makeText(StepsActivity.this, "Request Accepted", Toast.LENGTH_SHORT).show();
-        });
-        dialog.show();
     }
 
     protected void onPause() {
