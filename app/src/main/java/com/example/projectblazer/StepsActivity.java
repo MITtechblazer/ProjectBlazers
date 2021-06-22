@@ -19,6 +19,7 @@ public class StepsActivity extends AppCompatActivity {
     private TextView alertTextView;
     private double MagnitudePrevious = 0;
     private Integer stepCount = 0;
+    private AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,30 +42,33 @@ public class StepsActivity extends AppCompatActivity {
 
                     if (MagnitudeDelta > 6){
                         stepCount++;
+
+                        if (stepCount>=1) {
+
+                            builder = new AlertDialog.Builder(StepsActivity.this);
+                            builder.setTitle("You are moving")
+                                    .setMessage("Stay alert on your surroundings.")
+                                    .setCancelable(true);
+
+                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    //alertTextView.setVisibility(View.VISIBLE);
+                                    dialogInterface.cancel();
+                                }
+                            });
+                            builder.show();
+                        }
                     }
 
                     textView.setText(stepCount.toString());
-
-                    if (stepCount>=10) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(StepsActivity.this);
-
-                        builder.setTitle("You are moving")
-                                .setMessage("Stay alert on your surroundings.")
-
-                                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        dialogInterface.cancel();
-                                    }
-                                })
-
-                                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        alertTextView.setVisibility(View.VISIBLE);
-                                    }
-                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                    }
                 }
             }
 
