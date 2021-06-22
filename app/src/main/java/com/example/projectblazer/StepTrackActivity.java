@@ -11,12 +11,14 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class StepsActivity extends AppCompatActivity {
+public class StepTrackActivity extends AppCompatActivity {
+
 
     private TextView textView;
     private double MagnitudePrevious = 0;
@@ -29,7 +31,7 @@ public class StepsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_steps);
+        setContentView(R.layout.activity_step_track);
 
         btnWin = findViewById(R.id.btnWin);
         btnLose = findViewById(R.id.btnLose);
@@ -53,14 +55,21 @@ public class StepsActivity extends AppCompatActivity {
                         stepCount++;
                     }
                     textView.setText(stepCount.toString());
+                    if (stepCount>=1) {  btnWin.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            openWinDialog();
 
-                }
+                        }
+                    });}                }
+
             }
 
             @Override
             public void onAccuracyChanged(Sensor sensor, int i) {
             }
         };
+
 
         sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
@@ -72,13 +81,19 @@ public class StepsActivity extends AppCompatActivity {
         ImageView imageViewClose = dialog.findViewById(R.id.imageViewClose);
         Button btnOk = dialog.findViewById(R.id.btnOK);
 
-        imageViewClose.setOnClickListener(v -> {
-            dialog.dismiss();
-            Toast.makeText(StepsActivity.this, "Request Ignore", Toast.LENGTH_SHORT).show();
+        imageViewClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Toast.makeText(StepTrackActivity.this, "Request Ignore", Toast.LENGTH_SHORT).show();
+            }
         });
-        btnOk.setOnClickListener(v -> {
-            dialog.dismiss();
-            Toast.makeText(StepsActivity.this, "Request Accepted", Toast.LENGTH_SHORT).show();
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Toast.makeText(StepTrackActivity.this, "Request Accepted", Toast.LENGTH_SHORT).show();
+            }
         });
         dialog.show();
     }
@@ -110,4 +125,5 @@ public class StepsActivity extends AppCompatActivity {
         stepCount = sharedPreferences.getInt("stepCount", 0);
 
     }
+
 }

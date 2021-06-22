@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -15,6 +15,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class HomeActivity extends AppCompatActivity {
     TextView name,email;
     Button logout;
+    Button open;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,12 @@ public class HomeActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
+        });
+        open = findViewById(R.id.openDialog);
+        open.setOnClickListener(v -> {
+            Intent intent = new Intent (getApplicationContext(), StepTrackActivity.class);
+            startActivity(intent);
+
         });
     }
 }
