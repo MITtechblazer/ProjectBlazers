@@ -1,18 +1,22 @@
 package com.example.projectblazer;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class StepsActivity extends AppCompatActivity {
 
     private TextView textView;
+    private TextView alertTextView;
     private double MagnitudePrevious = 0;
     private Integer stepCount = 0;
 
@@ -38,7 +42,29 @@ public class StepsActivity extends AppCompatActivity {
                     if (MagnitudeDelta > 6){
                         stepCount++;
                     }
+
                     textView.setText(stepCount.toString());
+
+                    if (stepCount>=10) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(StepsActivity.this);
+
+                        builder.setTitle("You are moving")
+                                .setMessage("Stay alert on your surroundings.")
+
+                                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.cancel();
+                                    }
+                                })
+
+                                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        alertTextView.setVisibility(View.VISIBLE);
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                    }
                 }
             }
 
