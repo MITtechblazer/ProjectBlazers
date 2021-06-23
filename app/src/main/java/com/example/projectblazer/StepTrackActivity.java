@@ -53,15 +53,16 @@ public class StepTrackActivity extends AppCompatActivity {
 
                     if (MagnitudeDelta > 6){
                         stepCount++;
+                        if (stepCount>=1) {  btnWin.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                openWinDialog();
+
+                            }
+                        });
                     }
                     textView.setText(stepCount.toString());
-                    if (stepCount>=1) {  btnWin.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            openWinDialog();
-
-                        }
-                    });}                }
+                  }                }
 
             }
 

@@ -6,64 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <Button
-        android:id="@+id/openDialog"
-        android:layout_width="179dp"
-        android:layout_height="45dp"
-        android:text="@android:string/dialog_alert_title"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.874" />
-
-    <Button
-        android:id="@+id/Logout"
+    <TextView
+        android:id="@+id/steps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="154dp"
-        android:layout_marginLeft="154dp"
-        android:layout_marginTop="354dp"
-        android:layout_marginEnd="163dp"
-        android:layout_marginRight="163dp"
-        android:layout_marginBottom="337dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="290dp"
+        android:text="Steps"
+        android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--Text View for the step count-->
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/tv_stepsTaken"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="106dp"
-        android:layout_marginLeft="106dp"
-        android:layout_marginTop="158dp"
-        android:layout_marginEnd="248dp"
-        android:layout_marginRight="248dp"
-        android:layout_marginBottom="177dp"
-        android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/Logout"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:text="0"
+        android:textSize="37sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/steps" />
 
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="178dp"
-        android:layout_marginLeft="178dp"
-        android:layout_marginTop="47dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginRight="176dp"
-        android:layout_marginBottom="288dp"
-        android:text="Email"
-        app:layout_constraintBottom_toTopOf="@+id/Logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

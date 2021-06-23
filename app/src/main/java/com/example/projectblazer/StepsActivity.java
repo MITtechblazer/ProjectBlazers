@@ -1,7 +1,9 @@
 package com.example.projectblazer;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -39,7 +41,7 @@ public class StepsActivity extends AppCompatActivity {
                     if (MagnitudeDelta > 6){
                         stepCount++;
 
-                        if (stepCount>=1) {
+                        if (stepCount>=5) {
 
                             builder = new AlertDialog.Builder(StepsActivity.this);
                             builder.setTitle("You are moving")

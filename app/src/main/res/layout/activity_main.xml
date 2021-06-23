@@ -10,13 +10,15 @@
         android:id="@+id/email_TextField"
         android:layout_width="223dp"
         android:layout_height="39dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/password_TextField"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.756" />
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView3"
@@ -34,15 +36,14 @@
         android:id="@+id/password_TextField"
         android:layout_width="222dp"
         android:layout_height="38dp"
-        android:layout_marginTop="364dp"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/login_Button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.522" />
 
     <TextView
         android:id="@+id/textView2"
