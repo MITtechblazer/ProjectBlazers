@@ -4,10 +4,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -15,28 +15,29 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 public class HomeActivity extends AppCompatActivity {
-    private TextView textView;
     private TextView alertTextView;
+    private TextView textView;
+    private TextView textSteps;
     private double MagnitudePrevious = 0;
     private Integer stepCount = 0;
     private AlertDialog.Builder builder;
-    Button btnWin,btnLose;
-    Dialog dialog;
+    ToggleButton btnToggle;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        btnWin = findViewById(R.id.btnWin);
-
-        dialog = new Dialog(this);
-
         textView = findViewById(R.id.tv_stepsTaken);
+        textSteps = findViewById(R.id.steps);
+        btnToggle = findViewById(R.id.togglebutton);
+
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         SensorEventListener stepDetector = new SensorEventListener() {
@@ -50,10 +51,10 @@ public class HomeActivity extends AppCompatActivity {
                     double MagnitudeDelta = Magnitude - MagnitudePrevious;
                     MagnitudePrevious = Magnitude;
 
-                    if (MagnitudeDelta > 6){
+                    if (MagnitudeDelta > 3){
                         stepCount++;
 
-                        if (stepCount==5) {
+                        if (stepCount==10) {
 
                             builder = new AlertDialog.Builder(HomeActivity.this);
                             builder.setTitle("You are moving")
@@ -76,7 +77,7 @@ public class HomeActivity extends AppCompatActivity {
                             });
 
                             builder.show();
-                        } else if (stepCount==10) {
+                        } else if (stepCount==20) {
 
                             builder = new AlertDialog.Builder(HomeActivity.this);
                             builder.setTitle("You are still moving")
@@ -113,15 +114,25 @@ public class HomeActivity extends AppCompatActivity {
         };
 
         sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-    }
 
-    private void openWinDialog() {
-        dialog.setContentView(R.layout.win_layout_dialog);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        ImageView imageViewClose = dialog.findViewById(R.id.imageViewClose);
-        Button btnOk = dialog.findViewById(R.id.btnOK);
-        dialog.show();
+        btnToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                // The toggle is enabled
+                Toast.makeText(HomeActivity.this, "Toggle is ON", Toast.LENGTH_SHORT).show();
+                textSteps.setText("Count steps");
+                textView.setVisibility(View.VISIBLE);
+            } else {
+                // The toggle is disabled
+                Toast.makeText(HomeActivity.this, "Toggle is OFF", Toast.LENGTH_SHORT).show();
+                //stepCount=null;
+                textSteps.setText("App is disabled");
+                textView.setVisibility(View.GONE);
+                /*PackageManager pm = getPackageManager();
+                pm.setComponentEnabledSetting(new ComponentName(this, HomeActivity.class),
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);*/
+            }
+        });
     }
 
     protected void onPause() {
@@ -146,9 +157,9 @@ public class HomeActivity extends AppCompatActivity {
 
     protected void onResume() {
         super.onResume();
+        Toast.makeText(HomeActivity.this, "Resumed", Toast.LENGTH_SHORT).show();
 
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         stepCount = sharedPreferences.getInt("stepCount", 0);
-
     }
 }

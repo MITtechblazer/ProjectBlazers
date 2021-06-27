@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,11 +22,14 @@ public class SignupActivity extends AppCompatActivity {
     private EditText mEmail;
     private EditText mPassword;
     private Button mRegButton;
+    private TextView mLogin;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Remove Title Bar
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_signup);
 
 
@@ -34,6 +38,7 @@ public class SignupActivity extends AppCompatActivity {
         mEmail=findViewById(R.id.remail_TextField);
         mPassword=findViewById(R.id.rPassword_TextField);
         mRegButton=findViewById(R.id.register_Button);
+        mLogin=findViewById(R.id.login_Link);
 
         mRegButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,8 +67,11 @@ public class SignupActivity extends AppCompatActivity {
                     Toast.makeText(SignupActivity.this,"Please Fill empty field",Toast.LENGTH_SHORT).show();
                 }
             }
+        });
 
-
+        mLogin.setOnClickListener(v -> {
+            Intent intent = new Intent (getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         });
     }
 }

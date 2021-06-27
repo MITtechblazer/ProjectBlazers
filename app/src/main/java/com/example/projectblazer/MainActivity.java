@@ -42,9 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mLoginBtn;
     private FirebaseAuth mAuth;
     private TextView msignUp;
-
-
-    SignInButton signInButton;
+    private SignInButton signInButton;
     GoogleSignInClient mGoogleSignInClient;
 
 
@@ -52,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Remove Title Bar
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         mEmail=findViewById(R.id.email_TextField);
         mPassword=findViewById(R.id.password_TextField);
@@ -113,13 +113,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         msignUp.setOnClickListener(v -> {
             Intent intent = new Intent (getApplicationContext(), SignupActivity.class);
             startActivity(intent);
-
         });
 
     }
