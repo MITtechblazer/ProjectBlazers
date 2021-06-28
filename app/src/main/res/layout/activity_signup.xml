@@ -10,10 +10,10 @@
     tools:context=".SignupActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="103dp"
+        android:layout_height="121dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_launcher_foreground"/>
+        android:src="@drawable/logo_app" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -74,7 +74,9 @@
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="Register" />
+        android:text="Register"
+        android:textColor="@color/black"
+        app:backgroundTint="#9152F1" />
 
     <TextView
         android:id="@+id/login_Link"

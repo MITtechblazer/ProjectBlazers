@@ -14,11 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Projectblazer">
-        <activity android:name=".StepTrackActivity" android:configChanges="keyboardHidden"/>
+        <activity android:name=".WelcomeActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".StepTrackActivity"
+            android:configChanges="keyboardHidden" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".AlertActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SpashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
